@@ -1,5 +1,5 @@
 import { useId, useState } from 'react';
-import { StyleSheet, TextInput, type TextInputProps, View } from 'react-native';
+import { Platform, StyleSheet, TextInput, type TextInputProps, View } from 'react-native';
 
 import { FormMessage } from '@/ui/components/form-message';
 import { IconButton } from '@/ui/components/icon-button';
@@ -57,7 +57,11 @@ export function TextField({
           {
             backgroundColor: editable ? theme.colors.surface : theme.colors.surfaceDisabled,
             borderColor,
-            shadowColor: isFocused ? theme.colors.brand : 'transparent',
+            ...(isFocused && Platform.OS === 'web'
+              ? { boxShadow: `0 0 8px ${theme.colors.focusRing}` }
+              : isFocused && Platform.OS === 'ios'
+                ? { shadowColor: theme.colors.brand }
+                : null),
           },
           isFocused && styles.focused,
         ]}
@@ -120,10 +124,14 @@ const styles = StyleSheet.create({
   },
   focused: {
     borderWidth: borders.emphasized,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.18,
-    shadowRadius: 8,
-    elevation: 2,
+    ...Platform.select({
+      ios: {
+        shadowOffset: { width: 0, height: 0 },
+        shadowOpacity: 0.18,
+        shadowRadius: 8,
+      },
+      android: { elevation: 2 },
+    }),
   },
   input: {
     flex: 1,

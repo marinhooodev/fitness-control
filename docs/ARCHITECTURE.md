@@ -1,7 +1,7 @@
 # CONTROL — arquitetura
 
 > Arquitetura-alvo da v0.1.0  
-> Sessões 1 e 2 implementadas; auth, app shell e workout ainda são alvos das próximas sessões.
+> Sessões 1 a 3 implementadas no código; app shell e workout ainda são alvos das próximas sessões.
 
 ## Objetivo arquitetural
 
@@ -87,7 +87,7 @@ Diretórios só devem ser criados quando receberem código real. Não construir 
 - Um store Zustand concentra somente estado compartilhado/persistente.
 - Funções de feature que apenas calculam valores continuam fora do store.
 - Persistência usa AsyncStorage e uma chave versionada.
-- Na Sessão 2, somente a preferência de tema ocupa o store; perfil, sessão e workout entram quando seus fluxos existirem.
+- Na Sessão 3, tema, perfil, preferências e sessão ocupam o store; workout entra quando seu fluxo existir.
 
 ## Rotas da v0.1
 
@@ -108,7 +108,7 @@ Root Stack
         └── active
 ```
 
-A rota inicial aguarda hidratação antes de escolher auth ou app. Isso evita mostrar por um frame a tela errada.
+A raiz aguarda hidratação antes de liberar as rotas protegidas de auth ou app. Isso evita mostrar por um frame a tela errada. Enquanto a Sessão 4 não cria as tabs, `/(app)/index` hospeda uma tela autenticada temporária.
 
 ## Navegação
 

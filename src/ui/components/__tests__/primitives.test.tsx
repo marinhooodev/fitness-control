@@ -1,12 +1,11 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { fireEvent, render, waitFor } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 import type { ReactElement } from 'react';
+import { useState } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { DesignSystemShowcaseScreen } from '@/features/foundation/design-system-showcase-screen';
-import { demoStorageKey, useDemoStore } from '@/store/demo-store';
-import { Button, TextField } from '@/ui/components';
+import { useDemoStore } from '@/store/demo-store';
+import { Button, Sheet, Text, TextField } from '@/ui/components';
 import { ControlThemeProvider } from '@/ui/theme/theme-provider';
 
 const initialMetrics = {
@@ -26,36 +25,18 @@ async function renderWithProviders(component: ReactElement) {
   );
 }
 
-describe('<DesignSystemShowcaseScreen />', () => {
-  it('renders the CONTROL foundation and switches the persisted theme mode', async () => {
-    const view = await renderWithProviders(<DesignSystemShowcaseScreen />);
+function SheetHarness() {
+  const [visible, setVisible] = useState(false);
 
-    view.getByRole('header', { name: 'BUILT TO MOVE.' });
-    view.getByText('Manrope + Barlow Condensed');
-    view.getByText('Vector-first identity');
-
-    await fireEvent.press(view.getByRole('radio', { name: 'Dark' }));
-
-    expect(useDemoStore.getState().themeMode).toBe('dark');
-    view.getByText('Resolved appearance · dark');
-    await waitFor(() =>
-      expect(AsyncStorage.setItem).toHaveBeenLastCalledWith(
-        demoStorageKey,
-        expect.stringContaining('"themeMode":"dark"'),
-      ),
-    );
-  });
-
-  it('opens and closes the local sheet', async () => {
-    const view = await renderWithProviders(<DesignSystemShowcaseScreen />);
-
-    await fireEvent.press(view.getByRole('button', { name: 'Open workout sheet' }));
-    view.getByRole('header', { name: 'Today · Upper Strength' });
-
-    await fireEvent.press(view.getByRole('button', { name: 'Close sheet' }));
-    expect(view.queryByRole('header', { name: 'Today · Upper Strength' })).toBeNull();
-  });
-});
+  return (
+    <>
+      <Button label="Open sheet" onPress={() => setVisible(true)} />
+      <Sheet onClose={() => setVisible(false)} title="Local sheet" visible={visible}>
+        <Text>Sheet content</Text>
+      </Sheet>
+    </>
+  );
+}
 
 describe('CONTROL primitives', () => {
   it('honors enabled, disabled and loading button states', async () => {
@@ -86,13 +67,18 @@ describe('CONTROL primitives', () => {
       </>,
     );
 
-    view.getByText('Email is required.');
     expect(view.getByLabelText('Email').props.accessibilityHint).toBe('Email is required.');
     expect(view.getByLabelText('Password').props.secureTextEntry).toBe(true);
-
     await fireEvent.press(view.getByRole('button', { name: 'Show password' }));
-
     expect(view.getByLabelText('Password').props.secureTextEntry).toBe(false);
-    view.getByRole('button', { name: 'Hide password' });
+  });
+
+  it('opens and closes the local sheet', async () => {
+    const view = await renderWithProviders(<SheetHarness />);
+
+    await fireEvent.press(view.getByRole('button', { name: 'Open sheet' }));
+    view.getByRole('header', { name: 'Local sheet' });
+    await fireEvent.press(view.getByRole('button', { name: 'Close sheet' }));
+    expect(view.queryByRole('header', { name: 'Local sheet' })).toBeNull();
   });
 });

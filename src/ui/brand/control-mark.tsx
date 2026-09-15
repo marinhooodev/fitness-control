@@ -2,20 +2,35 @@ import Svg, { Path, type SvgProps } from 'react-native-svg';
 
 import { useTheme } from '@/ui/theme/theme-provider';
 
-interface ControlMarkProps extends Omit<SvgProps, 'color'> {
+interface ControlMarkProps extends Omit<
+  SvgProps,
+  | 'accessibilityElementsHidden'
+  | 'accessibilityLabel'
+  | 'accessibilityRole'
+  | 'accessible'
+  | 'color'
+> {
+  accessibilityLabel?: string;
   color?: string;
+  decorative?: boolean;
   size?: number;
 }
 
-export function ControlMark({ color, size = 64, ...props }: ControlMarkProps) {
+export function ControlMark({
+  accessibilityLabel = 'CONTROL mark',
+  color,
+  decorative = false,
+  size = 64,
+  ...props
+}: ControlMarkProps) {
   const { theme } = useTheme();
   const resolvedColor = color ?? theme.colors.brand;
 
   return (
     <Svg
       {...props}
-      accessibilityLabel={props.accessibilityLabel ?? 'CONTROL mark'}
-      accessibilityRole="image"
+      accessibilityLabel={decorative ? undefined : accessibilityLabel}
+      accessibilityRole={decorative ? undefined : 'image'}
       height={size}
       viewBox="0 0 80 64"
       width={size * 1.25}

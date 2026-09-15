@@ -51,12 +51,18 @@ export function Chip({
       </View>
     </>
   );
+  const accessibilityState = {
+    ...props.accessibilityState,
+    selected,
+    checked: accessibilityRole === 'radio' ? selected : undefined,
+    disabled: Boolean(disabled),
+  };
 
   if (!onPress) {
     return (
       <View
         {...props}
-        accessibilityState={{ ...props.accessibilityState, selected, disabled: Boolean(disabled) }}
+        accessibilityState={accessibilityState}
         style={[
           styles.base,
           {
@@ -75,7 +81,7 @@ export function Chip({
     <Pressable
       {...props}
       accessibilityRole={accessibilityRole}
-      accessibilityState={{ ...props.accessibilityState, selected, disabled: Boolean(disabled) }}
+      accessibilityState={accessibilityState}
       disabled={disabled}
       onPress={(event) => {
         triggerHaptic('selection');
