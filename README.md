@@ -1,56 +1,108 @@
-# Welcome to your Expo app 👋
+# CONTROL
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+CONTROL is a visual-first mobile fitness portfolio project built with React Native, Expo, and TypeScript. The product concept is an adaptive command center for hybrid training, with local workout flows, rich data visualization, and deterministic “smart” adaptations.
 
-## Get started
+This repository is intentionally **mock-only**:
 
-1. Install dependencies
+- no backend or database;
+- no real authentication;
+- no remote AI or LLM;
+- no paid services;
+- no runtime dependency on remote images.
 
-   ```bash
-   npm install
-   ```
+## Current status
 
-2. Start the app
+Product discovery and implementation planning are complete. The repository still contains the original Expo starter UI; implementation target **v0.1.0 — Functional Shell** has not started yet.
 
-   ```bash
-   npx expo start
-   ```
+The current starter is on Expo SDK 57, React Native 0.86, React 19.2, and TypeScript strict mode. A known baseline typecheck issue involving the starter's CSS imports is documented for repair in the first implementation session.
 
-In the output, you'll find options to open the app in a
+## Documentation
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- [Product vision](docs/PRODUCT_VISION.md)
+- [Implementation plan](docs/IMPLEMENTATION_PLAN.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Design system](docs/DESIGN_SYSTEM.md)
+- [Asset brief and image prompts](docs/ASSET_BRIEF.md)
+- [Quality and release gates](docs/QUALITY.md)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Repository rules for coding agents live in [AGENTS.md](AGENTS.md).
 
-## Get a fresh project
+## Requirements
 
-When you're ready, run:
+- Node.js 22.13 or newer. The current workspace has Node.js 24 available.
+- npm.
+- Expo Go on the Android or iPhone used for testing.
+- Android Studio only if an Android emulator is desired.
+- macOS and Xcode only if an iOS Simulator is desired.
+
+Expo's iOS Simulator runs only on macOS. From Windows, use a physical iPhone with Expo Go.
+
+## Install
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Start
 
-### Other setup steps
+```bash
+npx expo start
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+The terminal displays a QR code.
 
-## Learn more
+### Android device
 
-To learn more about developing your project with Expo, look at the following resources:
+1. Install Expo Go from Google Play.
+2. Keep the phone and computer on the same network.
+3. Scan the QR code from Expo Go.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Android emulator
 
-## Join the community
+1. Start an emulator from Android Studio.
+2. Start the Expo development server.
+3. Press `a` in the Expo terminal.
 
-Join our community of developers creating universal apps.
+### Physical iPhone from Windows
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+1. Install Expo Go from the App Store.
+2. Keep the iPhone and computer on the same network.
+3. Scan the QR code with the iPhone camera and open it in Expo Go.
+
+If the device cannot reach the development server over the local network, try:
+
+```bash
+npx expo start --tunnel
+```
+
+For a stale Metro cache:
+
+```bash
+npx expo start --clear
+```
+
+## Current scripts
+
+```bash
+npm run start
+npm run android
+npm run ios
+npm run web
+npm run lint
+```
+
+The v0.1 implementation will add `typecheck`, `test`, and `test:ci` scripts before the first version is closed.
+
+## Planned local demo behavior
+
+v0.1 will provide a local demo profile, registration, onboarding, logout, theme preference, and a minimal workout session. AsyncStorage will persist display data and session state only; passwords will never be stored.
+
+Later versions will add Today, Live Workout, Smart Adaptation, Progress, and Control Twin as local features. Smart Adaptation will use transparent deterministic rules and will not claim to be a real AI system.
+
+## Official Expo references
+
+- [Expo SDK 57](https://docs.expo.dev/versions/v57.0.0/)
+- [Start developing](https://docs.expo.dev/get-started/start-developing/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS Simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Router tabs](https://docs.expo.dev/router/advanced/tabs/)
