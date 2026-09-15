@@ -90,7 +90,11 @@ export function Sheet({
 
   const focusTitle = () => {
     if (Platform.OS === 'web') {
-      const webTitle = titleRef.current as unknown as { focus?: () => void } | null;
+      const webTitle = titleRef.current as unknown as {
+        focus?: () => void;
+        setAttribute?: (name: string, value: string) => void;
+      } | null;
+      webTitle?.setAttribute?.('tabindex', '-1');
       webTitle?.focus?.();
       return;
     }
@@ -160,7 +164,6 @@ export function Sheet({
                   accessibilityRole="header"
                   ref={titleRef}
                   style={styles.title}
-                  tabIndex={-1}
                   variant="heading"
                 >
                   {title}
