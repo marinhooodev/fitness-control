@@ -1,7 +1,7 @@
 # CONTROL — plano de implementação
 
 > Alvo ativo: v0.1.0 — Functional Shell  
-> Status: em implementação — Sessão 3 concluída no código; smoke em dispositivos pendente
+> Status: em implementação — Sessão 4 concluída no código; smoke em dispositivos pendente
 > Este documento organiza trabalho futuro; nenhuma etapa descrita aqui deve ser considerada concluída sem evidência.
 
 ## Estratégia
@@ -18,12 +18,12 @@ Não será criado um design completo de todas as features antes do código. Cada
 
 ## Estado atual
 
-- A Sessão 3 substituiu a vitrine interna pelos fluxos locais de sign-in, sign-up e onboarding.
+- A Sessão 4 substituiu a tela autenticada temporária pelo app shell, CONTROL Dock e sessão mínima.
 - `package.json` e `app.json` estão em `0.1.0`; nome, slug e scheme usam a identidade CONTROL.
 - Tokens semânticos, tipografia, motion, elevação e primitives compartilhadas vivem em `src/ui`.
 - Manrope e Barlow Condensed são carregadas de arquivos empacotados; não existe carregamento remoto.
 - O tema system/light/dark é resolvido pelo `ControlThemeProvider` e persistido localmente no store Zustand.
-- Perfil, preferências e sessão demonstrativa compartilham o mesmo store persistido; senha e confirmação nunca chegam ao store.
+- Perfil, preferências, sessão demonstrativa e workout ativo compartilham o mesmo store persistido; senha e confirmação nunca chegam ao store.
 - A raiz aguarda fontes e reidratação do AsyncStorage antes de montar as rotas protegidas do Expo Router.
 - O perfil demo Alex Morgan entra diretamente; cadastro local passa por três etapas de onboarding.
 - E-mail local conhecido aceita qualquer senha sintaticamente válida; e-mail desconhecido abre o cadastro já preenchido.
@@ -32,10 +32,10 @@ Não será criado um design completo de todas as features antes do código. Cada
 - Símbolo, wordmark e splash provisórios têm fontes vetoriais locais e componentes SVG.
 - TypeScript permanece em strict mode e não existem CSS modules.
 - ESLint flat, Prettier, Jest Expo e React Native Testing Library estão configurados.
-- Os gates `lint`, `typecheck` e `test:ci`, o Expo Doctor e os exports Android/iOS passam localmente.
-- Quatorze testes cobrem primitives, validação, onboarding, reidratação, os dois caminhos de entrada, e-mail desconhecido, ausência de senha e diferença entre logout/reset.
+- Os gates `lint`, `typecheck` e `test:ci`, o Expo Doctor e os exports Android/iOS passam localmente; o export web e smoke responsivo também passaram após a Sessão 4.
+- Vinte testes cobrem primitives, validação, onboarding, reidratação, entrada, dock, Today, timer e transições persistidas do workout.
 - Android e iPhone físico continuam pendentes para fonte ampliada, teclado, reduce motion e relaunch real.
-- Tabs, CONTROL Dock e workout permanecem fora da árvore, conforme o limite da Sessão 3.
+- Today, Plan, Progress e You estão navegáveis pela CONTROL Dock; preview e workout ativo vivem fora da árvore de tabs.
 
 ## Resultado da v0.1.0
 
@@ -174,11 +174,11 @@ Entregar a carcaça navegável que receberá as features das próximas versões.
 
 ### Fechamento da sessão
 
-- Todas as tabs são navegáveis.
-- Back behavior é previsível no Android.
-- Dock funciona em light/dark, safe areas diferentes e reduce motion.
-- Start, pause, resume e finish atualizam estado persistido.
-- Nenhuma ação primária está morta.
+- [x] Todas as tabs são navegáveis.
+- [ ] Back behavior usa histórico entre tabs e retorno explícito do workout para Today no código; smoke Android físico permanece pendente.
+- [ ] Dock passou no smoke web light/dark, considera safe area e possui fallback imediato para reduce motion; smoke físico permanece pendente.
+- [x] Start, pause, resume e finish atualizam estado persistido.
+- [x] Nenhuma ação primária está morta nos testes e no smoke web responsivo.
 
 ## Sessão 5 — documentação, QA e fechamento da versão
 

@@ -4,7 +4,12 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 
 import { demoPreferences, demoProfile } from '@/data/fixtures/demo-user';
 import { normalizeEmail } from '@/shared/utils/email';
-import type { DemoProfile, DemoSession, TrainingPreferences } from '@/types/demo';
+import type {
+  ActiveWorkoutState,
+  DemoProfile,
+  DemoSession,
+  TrainingPreferences,
+} from '@/types/demo';
 
 export type ThemeMode = 'system' | 'light' | 'dark';
 
@@ -19,12 +24,17 @@ export interface DemoStore {
   profile: DemoProfile | null;
   preferences: TrainingPreferences | null;
   session: DemoSession | null;
+  activeWorkout: ActiveWorkoutState | null;
   setTheme: (themeMode: ThemeMode) => void;
   setHydrated: (isHydrated: boolean) => void;
   signInDemo: () => void;
   signInLocal: (email: string) => boolean;
   registerLocal: (input: RegisterLocalInput) => void;
   completeOnboarding: (preferences: TrainingPreferences) => void;
+  startWorkout: (workoutId: string) => void;
+  pauseWorkout: () => void;
+  resumeWorkout: () => void;
+  finishWorkout: () => void;
   signOut: () => void;
   resetDemoData: () => void;
 }
@@ -56,6 +66,7 @@ export const useDemoStore = create<DemoStore>()(
       profile: null,
       preferences: null,
       session: null,
+      activeWorkout: null,
       setTheme: (themeMode) => set({ themeMode }),
       setHydrated: (isHydrated) => set({ isHydrated }),
       signInDemo: () =>
@@ -95,6 +106,58 @@ export const useDemoStore = create<DemoStore>()(
           session: { ...session, onboardingComplete: true },
         });
       },
+      startWorkout: (workoutId) => {
+        if (get().activeWorkout) {
+          return;
+        }
+
+        set({
+          activeWorkout: {
+            workoutId,
+            status: 'active',
+            startedAt: new Date().toISOString(),
+            pausedAt: null,
+            accumulatedPauseMs: 0,
+          },
+        });
+      },
+      pauseWorkout: () => {
+        const { activeWorkout } = get();
+
+        if (!activeWorkout || activeWorkout.status !== 'active') {
+          return;
+        }
+
+        set({
+          activeWorkout: {
+            ...activeWorkout,
+            status: 'paused',
+            pausedAt: new Date().toISOString(),
+          },
+        });
+      },
+      resumeWorkout: () => {
+        const { activeWorkout } = get();
+
+        if (!activeWorkout || activeWorkout.status !== 'paused' || !activeWorkout.pausedAt) {
+          return;
+        }
+
+        const pauseStartedAt = Date.parse(activeWorkout.pausedAt);
+        const pauseDuration = Number.isFinite(pauseStartedAt)
+          ? Math.max(0, Date.now() - pauseStartedAt)
+          : 0;
+
+        set({
+          activeWorkout: {
+            ...activeWorkout,
+            status: 'active',
+            pausedAt: null,
+            accumulatedPauseMs: activeWorkout.accumulatedPauseMs + pauseDuration,
+          },
+        });
+      },
+      finishWorkout: () => set({ activeWorkout: null }),
       signOut: () => set({ session: null }),
       resetDemoData: () =>
         set({
@@ -102,13 +165,15 @@ export const useDemoStore = create<DemoStore>()(
           profile: null,
           preferences: null,
           session: null,
+          activeWorkout: null,
         }),
     }),
     {
       name: demoStorageKey,
       version: 1,
       storage: createJSONStorage(() => AsyncStorage),
-      partialize: ({ preferences, profile, session, themeMode }) => ({
+      partialize: ({ activeWorkout, preferences, profile, session, themeMode }) => ({
+        activeWorkout,
         preferences,
         profile,
         session,

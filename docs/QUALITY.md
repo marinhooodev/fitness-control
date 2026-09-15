@@ -9,11 +9,11 @@ O objetivo do projeto é visual, mas “parece bonito no meu aparelho” não é
 ## Baseline atual
 
 - A Sessão 1 removeu o código visual do starter e suas dependências de CSS modules.
-- A Sessão 2 adicionou tema persistido, fontes locais e primitives; a Sessão 3 substituiu a vitrine pelos fluxos locais de auth e onboarding.
+- A Sessão 2 adicionou tema persistido, fontes locais e primitives; a Sessão 3 entregou auth/onboarding e a Sessão 4 entregou shell, dock e workout mínimo.
 - Os scripts `lint`, `typecheck`, `test` e `test:ci` estão configurados.
 - TypeScript continua em strict mode; os erros de CSS foram eliminados na origem, sem `skipLibCheck` ou tipos amplos.
-- Quatorze testes cobrem estados de botão, erro/visibilidade de senha, Sheet, validação de auth, onboarding, reidratação, os dois caminhos de entrada, e-mail desconhecido, ausência de senha e diferença entre logout/reset.
-- Os exports Android e iOS passam após a Sessão 3; o export geral e o smoke Web permanecem gates do fechamento da versão.
+- Vinte testes cobrem primitives, validação de auth, onboarding, reidratação, entrada, dock, Today, cálculo de tempo e transições persistidas do workout.
+- Os exports Android, iOS e web passam após a Sessão 4; o smoke web responsivo foi executado em 390 × 844 e 360 × 800.
 - Android e iPhone físico ainda precisam da validação manual de fonte ampliada, reduce motion e interações indicada neste documento.
 
 ## Scripts-alvo

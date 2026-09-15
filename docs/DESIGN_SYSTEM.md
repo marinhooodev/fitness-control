@@ -3,7 +3,7 @@
 > Contrato visual inicial da v0.1.0  
 > Valores devem ser verificados em telas reais antes de serem considerados finais.
 
-Implementação atual: tokens, fontes, primitives, tema persistido, identidade vetorial e Sheet foram materializados na Sessão 2. Na Sessão 3, os fluxos reais de auth e onboarding substituíram a vitrine interna; os testes das primitives foram preservados junto aos componentes.
+Implementação atual: tokens, fontes, primitives, tema persistido, identidade vetorial e Sheet foram materializados na Sessão 2. Auth e onboarding chegaram na Sessão 3; a Sessão 4 materializou a CONTROL Dock, as quatro telas do shell e os estados mínimos do workout em light e dark.
 
 ## Direção
 
@@ -116,9 +116,9 @@ A dock é a principal assinatura da v0.1.
 
 - Inset lateral: 16.
 - Distância da safe area inferior: 8.
-- Altura base: 72.
+- Altura base: 78.
 - Radius externo: 28.
-- Botão central: 60 × 60, elevado cerca de 14 pontos.
+- Botão central: 66 × 66, elevado cerca de 14 pontos.
 - Cada tab mantém área interativa mínima de 48 × 48.
 
 ### Composição
@@ -127,18 +127,18 @@ A dock é a principal assinatura da v0.1.
 [ Today ] [ Plan ] [   Start   ] [ Progress ] [ You ]
 ```
 
-- Tab ativa mostra ícone, label e indicador curto.
+- Tab ativa ocupa uma cápsula deslizante com ícone, glow, label e indicador curto.
 - Tab inativa mostra ícone; accessibility label permanece completa.
-- Botão Start usa brand fill, brandInk e glow controlado.
-- Quando existe treino ativo, o botão mostra progress ring e um ícone de atividade.
-- A dock não usa blur ou glass como única separação do conteúdo.
+- Botão Start usa brand fill, brandInk, halo pulsante, órbita tracejada e brilho especular controlado.
+- Quando existe treino ativo, o botão mostra progress ring, badge de status e um ícone de atividade.
+- A superfície combina aura, borda, highlight interno e ponte central; blur ou glass nunca são sua única separação do conteúdo.
 
 ### Motion
 
 - Press: scale breve e retorno por spring.
-- Mudança de tab: indicador desliza; labels entram sem deslocar toda a dock.
-- Start → active: anel surge e ícone transforma sem rotação excessiva.
-- Reduce motion troca morph/slide por mudança imediata de cor e estado.
+- Mudança de tab: a cápsula desliza, o ícone ganha lift e as labels entram sem deslocar toda a dock.
+- Start → active: anel e badge surgem enquanto o ícone transforma sem rotação excessiva.
+- Reduce motion remove pulso, morph e slide contínuos, preservando mudança imediata de cor e estado.
 
 ## App bar
 
