@@ -3,6 +3,8 @@
 > Contrato visual inicial da v0.1.0  
 > Valores devem ser verificados em telas reais antes de serem considerados finais.
 
+Implementação atual: tokens, fontes, primitives, tema persistido, identidade vetorial e Sheet foram materializados na Sessão 2. A vitrine interna temporária na rota raiz permite validar estados e temas até os fluxos reais a substituírem.
+
 ## Direção
 
 CONTROL mistura energia esportiva com precisão técnica. A interface deve parecer premium e cinética, sem assumir a estética de hospital, dashboard corporativo ou cyberpunk genérico.

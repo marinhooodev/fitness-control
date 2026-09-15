@@ -1,0 +1,36 @@
+import Svg, { Text as SvgText, type SvgProps } from 'react-native-svg';
+
+import { fontFamilies } from '@/ui/theme/tokens';
+import { useTheme } from '@/ui/theme/theme-provider';
+
+interface ControlWordmarkProps extends Omit<SvgProps, 'color'> {
+  color?: string;
+  width?: number;
+}
+
+export function ControlWordmark({ color, width = 152, ...props }: ControlWordmarkProps) {
+  const { theme } = useTheme();
+  const height = width * 0.24;
+
+  return (
+    <Svg
+      {...props}
+      accessibilityLabel={props.accessibilityLabel ?? 'CONTROL'}
+      accessibilityRole="image"
+      height={height}
+      viewBox="0 0 152 36"
+      width={width}
+    >
+      <SvgText
+        fill={color ?? theme.colors.textPrimary}
+        fontFamily={fontFamilies.performanceBold}
+        fontSize="35"
+        letterSpacing="1.4"
+        x="0"
+        y="30"
+      >
+        CONTROL
+      </SvgText>
+    </Svg>
+  );
+}

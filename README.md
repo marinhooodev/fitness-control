@@ -12,9 +12,9 @@ O projeto é permanentemente **mock-only e offline-first**:
 
 ## Estado atual
 
-A Sessão 1 da v0.1.0 estabelece a baseline CONTROL: identidade mínima, tela temporária com light/dark e safe area, splash controlado, TypeScript strict sem CSS modules, lint, formatação, Jest e React Native Testing Library.
+A Sessão 2 da v0.1.0 entrega o design system compartilhado: tokens semânticos, fontes locais Manrope e Barlow Condensed, tema system/light/dark persistido, primitives acessíveis, motion com reduce motion, Sheet gestual e identidade vetorial provisória. A rota inicial funciona temporariamente como vitrine interativa desses fundamentos.
 
-Auth, onboarding, tabs, CONTROL Dock e workout ainda não existem. Essas partes pertencem às próximas sessões descritas no plano de implementação.
+Auth, onboarding, tabs, CONTROL Dock e workout ainda não existem. Essas partes pertencem às próximas sessões descritas no plano de implementação; nenhuma integração remota foi adicionada.
 
 ## Requisitos
 

@@ -1,7 +1,7 @@
 # CONTROL — plano de implementação
 
 > Alvo ativo: v0.1.0 — Functional Shell  
-> Status: em implementação — Sessão 1 concluída no código; smoke em dispositivos pendente
+> Status: em implementação — Sessão 2 concluída no código; smoke em dispositivos pendente
 > Este documento organiza trabalho futuro; nenhuma etapa descrita aqui deve ser considerada concluída sem evidência.
 
 ## Estratégia
@@ -18,14 +18,19 @@ Não será criado um design completo de todas as features antes do código. Cada
 
 ## Estado atual
 
-- A Sessão 1 substituiu o starter por uma única rota temporária CONTROL.
+- A Sessão 2 substituiu a baseline por uma vitrine interna temporária do design system.
 - `package.json` e `app.json` estão em `0.1.0`; nome, slug e scheme usam a identidade CONTROL.
-- Ícone e splash provisórios são procedurais, locais e possuem proveniência registrada.
+- Tokens semânticos, tipografia, motion, elevação e primitives compartilhadas vivem em `src/ui`.
+- Manrope e Barlow Condensed são carregadas de arquivos empacotados; não existe carregamento remoto.
+- O tema system/light/dark é resolvido pelo `ControlThemeProvider` e persistido localmente no store Zustand.
+- O Sheet local usa Modal, Gesture Handler e Reanimated, incluindo gesto de dismiss e reduce motion.
+- Símbolo, wordmark e splash provisórios têm fontes vetoriais locais e componentes SVG.
 - TypeScript permanece em strict mode e não existem CSS modules.
 - ESLint flat, Prettier, Jest Expo e React Native Testing Library estão configurados.
-- Os gates `lint`, `typecheck` e `test:ci` passam localmente.
-- O export de Android, iOS e web e o smoke visual responsivo web passam; os smokes em Android e iPhone físico continuam pendentes.
-- Auth, tabs e demais features permanecem fora da árvore, conforme o limite da Sessão 1.
+- Os gates `lint`, `typecheck` e `test:ci`, o Expo Doctor e o export Android/iOS/web passam localmente.
+- O smoke visual web cobre os temas light/dark, persistência após reload e o Sheet; Android e iPhone físico continuam pendentes.
+- A vitrine cobre estados de botões, campos, chips, cards, mensagens, avatares e o Sheet nos dois temas.
+- Auth, tabs e demais features permanecem fora da árvore, conforme o limite da Sessão 2.
 
 ## Resultado da v0.1.0
 
@@ -84,11 +89,11 @@ Criar os fundamentos visuais reutilizáveis antes da carcaça.
 
 ### Fechamento da sessão
 
-- Primitives possuem estados normal, pressed, focused, disabled e error quando aplicável.
-- Alvos de toque importantes têm pelo menos 44 × 44 pontos.
-- Fonte ampliada não corta ações essenciais.
-- Reduce motion remove transformações decorativas.
-- App continua abrindo numa tela CONTROL válida.
+- [x] Primitives possuem estados normal, pressed, focused, disabled e error quando aplicável.
+- [x] Alvos de toque importantes têm pelo menos 44 × 44 pontos por contrato de token.
+- [ ] Fonte ampliada não corta ações essenciais em Android e iPhone físicos.
+- [x] Reduce motion remove transformações decorativas no código; smoke em dispositivo permanece pendente.
+- [x] App continua abrindo numa tela CONTROL válida e verificável pela vitrine interna.
 
 ## Sessão 3 — auth e onboarding locais
 

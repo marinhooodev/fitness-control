@@ -1,5 +1,5 @@
-import { ControlBaselineScreen } from '@/features/baseline/control-baseline-screen';
+import { DesignSystemShowcaseScreen } from '@/features/foundation/design-system-showcase-screen';
 
 export default function HomeScreen() {
-  return <ControlBaselineScreen />;
+  return <DesignSystemShowcaseScreen />;
 }
