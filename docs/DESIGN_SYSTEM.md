@@ -28,35 +28,35 @@ Palavras-guia:
 
 ### Dark
 
-| Token | Valor inicial | Uso |
-| --- | --- | --- |
-| `canvas` | `#080A09` | Fundo principal |
-| `surface` | `#121513` | Cards e dock |
-| `surfaceElevated` | `#1A1F1C` | Sheets e superfícies elevadas |
-| `textPrimary` | `#F3F6F2` | Texto principal |
-| `textSecondary` | `#98A29B` | Texto auxiliar |
-| `border` | `#2A312C` | Bordas e divisores |
-| `brand` | `#C8FF3D` | Ação principal e progresso |
-| `brandInk` | `#142000` | Conteúdo sobre brand |
-| `info` | `#72DCE8` | Recuperação e informação |
-| `warning` | `#FFB45C` | Atenção |
-| `danger` | `#FF6B5F` | Erro e esforço alto |
+| Token             | Valor inicial | Uso                           |
+| ----------------- | ------------- | ----------------------------- |
+| `canvas`          | `#080A09`     | Fundo principal               |
+| `surface`         | `#121513`     | Cards e dock                  |
+| `surfaceElevated` | `#1A1F1C`     | Sheets e superfícies elevadas |
+| `textPrimary`     | `#F3F6F2`     | Texto principal               |
+| `textSecondary`   | `#98A29B`     | Texto auxiliar                |
+| `border`          | `#2A312C`     | Bordas e divisores            |
+| `brand`           | `#C8FF3D`     | Ação principal e progresso    |
+| `brandInk`        | `#142000`     | Conteúdo sobre brand          |
+| `info`            | `#72DCE8`     | Recuperação e informação      |
+| `warning`         | `#FFB45C`     | Atenção                       |
+| `danger`          | `#FF6B5F`     | Erro e esforço alto           |
 
 ### Light
 
-| Token | Valor inicial | Uso |
-| --- | --- | --- |
-| `canvas` | `#F2F5F0` | Fundo principal |
-| `surface` | `#FFFFFF` | Cards e dock |
-| `surfaceElevated` | `#E7ECE5` | Sheets e superfícies elevadas |
-| `textPrimary` | `#0B0E0C` | Texto principal |
-| `textSecondary` | `#626D65` | Texto auxiliar |
-| `border` | `#D2DAD1` | Bordas e divisores |
-| `brand` | `#B7EF2F` | Ação principal e progresso |
-| `brandInk` | `#111800` | Conteúdo sobre brand |
-| `info` | `#087E8A` | Recuperação e informação |
-| `warning` | `#A85600` | Atenção |
-| `danger` | `#B8382D` | Erro e esforço alto |
+| Token             | Valor inicial | Uso                           |
+| ----------------- | ------------- | ----------------------------- |
+| `canvas`          | `#F2F5F0`     | Fundo principal               |
+| `surface`         | `#FFFFFF`     | Cards e dock                  |
+| `surfaceElevated` | `#E7ECE5`     | Sheets e superfícies elevadas |
+| `textPrimary`     | `#0B0E0C`     | Texto principal               |
+| `textSecondary`   | `#626D65`     | Texto auxiliar                |
+| `border`          | `#D2DAD1`     | Bordas e divisores            |
+| `brand`           | `#B7EF2F`     | Ação principal e progresso    |
+| `brandInk`        | `#111800`     | Conteúdo sobre brand          |
+| `info`            | `#087E8A`     | Recuperação e informação      |
+| `warning`         | `#A85600`     | Atenção                       |
+| `danger`          | `#B8382D`     | Erro e esforço alto           |
 
 Brand não deve ser usado como texto pequeno sobre canvas claro. Cores semânticas precisam ser validadas em contraste e daltonismo antes do fechamento.
 
@@ -71,15 +71,15 @@ As fontes são empacotadas localmente. Não carregar Google Fonts pela rede.
 
 ### Escala inicial
 
-| Papel | Fonte | Tamanho/linha | Peso |
-| --- | --- | --- | --- |
-| Display | Barlow Condensed | 64/64 | 700 |
-| Metric | Barlow Condensed | 40/42 | 700 |
-| Title | Manrope | 28/34 | 700 |
-| Heading | Manrope | 20/26 | 700 |
-| Body | Manrope | 16/24 | 500 |
-| Label | Manrope | 14/18 | 700 |
-| Caption | Manrope | 12/16 | 600 |
+| Papel   | Fonte            | Tamanho/linha | Peso |
+| ------- | ---------------- | ------------- | ---- |
+| Display | Barlow Condensed | 64/64         | 700  |
+| Metric  | Barlow Condensed | 40/42         | 700  |
+| Title   | Manrope          | 28/34         | 700  |
+| Heading | Manrope          | 20/26         | 700  |
+| Body    | Manrope          | 16/24         | 500  |
+| Label   | Manrope          | 14/18         | 700  |
+| Caption | Manrope          | 12/16         | 600  |
 
 - Respeitar font scaling do sistema.
 - Números tabulares devem ser usados em timer e séries quando a família suportar.
@@ -183,11 +183,11 @@ A dock é a principal assinatura da v0.1.
 
 ## Motion
 
-| Papel | Duração inicial |
-| --- | --- |
-| Feedback direto | 160–220 ms |
-| Entrada de conteúdo | 240–320 ms |
-| Reorganização estrutural | 320–480 ms |
+| Papel                    | Duração inicial |
+| ------------------------ | --------------- |
+| Feedback direto          | 160–220 ms      |
+| Entrada de conteúdo      | 240–320 ms      |
+| Reorganização estrutural | 320–480 ms      |
 
 - Usar springs em objetos manipuláveis e dock.
 - Não animar todo card ao mesmo tempo em listas longas.

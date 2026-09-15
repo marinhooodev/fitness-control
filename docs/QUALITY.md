@@ -8,12 +8,11 @@ O objetivo do projeto é visual, mas “parece bonito no meu aparelho” não é
 
 ## Baseline atual
 
-- O código ainda é o starter do Expo.
-- Não existem scripts `typecheck`, `test` e `test:ci`.
-- `npx tsc --noEmit` falha atualmente em:
-  - declaração de `animated-icon.module.css`;
-  - import global de `@/global.css`.
-- A v0.1 Session 1 deve eliminar esses erros junto com o starter, não apenas escondê-los com `skipLibCheck` ou tipos amplos.
+- A Sessão 1 removeu o código visual do starter e suas dependências de CSS modules.
+- Os scripts `lint`, `typecheck`, `test` e `test:ci` estão configurados.
+- TypeScript continua em strict mode; os erros de CSS foram eliminados na origem, sem `skipLibCheck` ou tipos amplos.
+- Existe um teste de renderização da tela temporária CONTROL com React Native Testing Library.
+- O export de Android, iOS e web e o smoke visual web passam; Android e iPhone físico ainda precisam da validação manual indicada neste documento.
 
 ## Scripts-alvo
 
@@ -95,11 +94,11 @@ No fechamento da versão, executar também um export de bundle compatível com o
 
 ### Dispositivos principais
 
-| Plataforma | Alvo | Obrigatório no fechamento |
-| --- | --- | --- |
-| Android | aparelho físico ou emulador via Expo Go | Sim |
-| iOS | iPhone físico via Expo Go | Sim |
-| Web | navegador desktop | Smoke de build/render |
+| Plataforma | Alvo                                    | Obrigatório no fechamento |
+| ---------- | --------------------------------------- | ------------------------- |
+| Android    | aparelho físico ou emulador via Expo Go | Sim                       |
+| iOS        | iPhone físico via Expo Go               | Sim                       |
+| Web        | navegador desktop                       | Smoke de build/render     |
 
 ### Tamanhos de referência
 

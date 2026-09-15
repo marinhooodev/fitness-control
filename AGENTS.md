@@ -53,6 +53,16 @@ Expo has changed. Before writing Expo or React Native code, read the exact versi
 - Every primary pressable must respond visually, semantically, and—where appropriate—with haptics.
 - Update the applicable document when a structural or product decision changes.
 
+## Git workflow
+
+- Never implement work directly on `main`.
+- Start every task from an updated `main`, then create a dedicated branch before editing.
+- Use `feature/<short-name>` for product work, `bugfix/<short-name>` for fixes, and `docs/<short-name>` for documentation-only work.
+- Keep one task per branch and use lowercase, hyphenated English branch names.
+- When a commit is explicitly requested, follow Conventional Commits (`feat`, `fix`, `docs`, `test`, `refactor`, `style`, `perf`, `build`, `ci`, `chore`, or `revert`).
+- Do not create commits, tags, releases, pushes, or pull requests unless the user explicitly asks for that action.
+- Run the applicable quality gates and review the diff before proposing integration into `main`.
+
 ## Dependency policy
 
 - Keep dependencies intentional and small.

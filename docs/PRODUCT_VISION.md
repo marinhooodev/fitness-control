@@ -68,13 +68,13 @@ Scores e sinais são demonstrativos. CONTROL não diagnostica, não trata, não 
 
 Quatro destinos persistentes e uma ação central:
 
-| Destino | Papel |
-| --- | --- |
-| Today | Resumo, estado atual e treino recomendado |
-| Plan | Semana de treino e adaptações simuladas |
-| Progress | Tendências, consistência, recordes e Control Twin |
-| You | Perfil local, equipamento, tema e reset |
-| Start Workout | Botão central da dock; inicia ou retoma a sessão |
+| Destino       | Papel                                             |
+| ------------- | ------------------------------------------------- |
+| Today         | Resumo, estado atual e treino recomendado         |
+| Plan          | Semana de treino e adaptações simuladas           |
+| Progress      | Tendências, consistência, recordes e Control Twin |
+| You           | Perfil local, equipamento, tema e reset           |
+| Start Workout | Botão central da dock; inicia ou retoma a sessão  |
 
 ### Fluxo-herói futuro
 
@@ -144,14 +144,14 @@ O produto terá login, cadastro, onboarding e logout para demonstrar o fluxo com
 
 ## Roadmap do produto
 
-| Versão | Resultado |
-| --- | --- |
+| Versão | Resultado                                                                         |
+| ------ | --------------------------------------------------------------------------------- |
 | v0.1.0 | Functional Shell: identidade, auth local, onboarding, temas, dock e sessão mínima |
-| v0.2.0 | Today Command Center |
-| v0.3.0 | Live Workout completo e recap |
-| v0.4.0 | Plan e Smart Adaptation |
-| v0.5.0 | Progress e Control Twin |
-| v0.6.0 | Portfolio Release e case study |
+| v0.2.0 | Today Command Center                                                              |
+| v0.3.0 | Live Workout completo e recap                                                     |
+| v0.4.0 | Plan e Smart Adaptation                                                           |
+| v0.5.0 | Progress e Control Twin                                                           |
+| v0.6.0 | Portfolio Release e case study                                                    |
 
 Somente a v0.1.0 está detalhada para implementação. Cada versão posterior será refinada antes de seu código começar.
 
