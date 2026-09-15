@@ -9,10 +9,12 @@ O objetivo do projeto é visual, mas “parece bonito no meu aparelho” não é
 ## Baseline atual
 
 - A Sessão 1 removeu o código visual do starter e suas dependências de CSS modules.
+- A Sessão 2 adicionou tema persistido, fontes locais, primitives e uma vitrine interna de estados light/dark.
 - Os scripts `lint`, `typecheck`, `test` e `test:ci` estão configurados.
 - TypeScript continua em strict mode; os erros de CSS foram eliminados na origem, sem `skipLibCheck` ou tipos amplos.
-- Existe um teste de renderização da tela temporária CONTROL com React Native Testing Library.
-- O export de Android, iOS e web e o smoke visual web passam; Android e iPhone físico ainda precisam da validação manual indicada neste documento.
+- Testes da fundação cobrem troca de tema, estados de botão, erro/visibilidade de senha e abertura/fechamento do Sheet.
+- O export de Android, iOS e web passa na Sessão 2; o smoke visual web cobre temas, persistência e Sheet.
+- Android e iPhone físico ainda precisam da validação manual de fonte ampliada, reduce motion e interações indicada neste documento.
 
 ## Scripts-alvo
 
