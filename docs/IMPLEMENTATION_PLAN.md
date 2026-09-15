@@ -1,7 +1,7 @@
 # CONTROL — plano de implementação
 
 > Alvo ativo: v0.1.0 — Functional Shell  
-> Status: pronto para implementação  
+> Status: em implementação — Sessão 1 concluída no código; smoke em dispositivos pendente
 > Este documento organiza trabalho futuro; nenhuma etapa descrita aqui deve ser considerada concluída sem evidência.
 
 ## Estratégia
@@ -16,17 +16,16 @@ A ordem de construção será:
 
 Não será criado um design completo de todas as features antes do código. Cada versão futura terá sua própria rodada curta de detalhamento, mas toda sessão de implementação deve terminar com o app executável.
 
-## Estado inicial conhecido
+## Estado atual
 
-- O repositório contém o template padrão do `create-expo-app`.
-- `package.json` ainda está em `1.0.0`; o primeiro fechamento real será `0.1.0`.
-- O produto ainda aparece como `fitness-control` em `app.json`.
-- A navegação atual usa native tabs no mobile e tabs customizadas no web.
-- Os componentes, ícones, splash e imagens ainda são exemplos do Expo.
-- TypeScript está em strict mode.
-- `npx tsc --noEmit` falha nos imports de CSS do starter web.
-- Lint e testes ainda não estão configurados para os quality gates planejados.
-- `docs/` e `AGENTS.md` já definem o produto e as restrições da implementação.
+- A Sessão 1 substituiu o starter por uma única rota temporária CONTROL.
+- `package.json` e `app.json` estão em `0.1.0`; nome, slug e scheme usam a identidade CONTROL.
+- Ícone e splash provisórios são procedurais, locais e possuem proveniência registrada.
+- TypeScript permanece em strict mode e não existem CSS modules.
+- ESLint flat, Prettier, Jest Expo e React Native Testing Library estão configurados.
+- Os gates `lint`, `typecheck` e `test:ci` passam localmente.
+- O export de Android, iOS e web e o smoke visual responsivo web passam; os smokes em Android e iPhone físico continuam pendentes.
+- Auth, tabs e demais features permanecem fora da árvore, conforme o limite da Sessão 1.
 
 ## Resultado da v0.1.0
 
@@ -61,11 +60,11 @@ Substituir a identidade do starter por uma baseline CONTROL mínima, sem começa
 
 ### Fechamento da sessão
 
-- App abre no Expo Go.
-- Não existe red screen.
-- Typecheck não possui os erros de CSS do starter.
-- O starter não aparece visualmente.
-- Não há ainda auth, tabs ou features parciais escondidas.
+- [ ] App abre no Expo Go em Android e iPhone.
+- [x] Bundles de Android, iOS e web são gerados; o export web abre sem red screen.
+- [x] Typecheck não possui os erros de CSS do starter.
+- [x] O starter não aparece visualmente.
+- [x] Não há ainda auth, tabs ou features parciais escondidas.
 
 ## Sessão 2 — design system
 

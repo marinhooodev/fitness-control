@@ -1,108 +1,83 @@
 # CONTROL
 
-CONTROL is a visual-first mobile fitness portfolio project built with React Native, Expo, and TypeScript. The product concept is an adaptive command center for hybrid training, with local workout flows, rich data visualization, and deterministic “smart” adaptations.
+CONTROL é um projeto mobile de portfólio, visual-first, construído com React Native, Expo e TypeScript. O conceito é um centro de comando adaptativo para treino híbrido, com fluxos locais, visualização de dados e adaptações “inteligentes” determinísticas.
 
-This repository is intentionally **mock-only**:
+O projeto é permanentemente **mock-only e offline-first**:
 
-- no backend or database;
-- no real authentication;
-- no remote AI or LLM;
-- no paid services;
-- no runtime dependency on remote images.
+- sem backend ou banco de dados;
+- sem autenticação real;
+- sem IA remota ou LLM;
+- sem serviços pagos;
+- sem imagens remotas em runtime.
 
-## Current status
+## Estado atual
 
-Product discovery and implementation planning are complete. The repository still contains the original Expo starter UI; implementation target **v0.1.0 — Functional Shell** has not started yet.
+A Sessão 1 da v0.1.0 estabelece a baseline CONTROL: identidade mínima, tela temporária com light/dark e safe area, splash controlado, TypeScript strict sem CSS modules, lint, formatação, Jest e React Native Testing Library.
 
-The current starter is on Expo SDK 57, React Native 0.86, React 19.2, and TypeScript strict mode. A known baseline typecheck issue involving the starter's CSS imports is documented for repair in the first implementation session.
+Auth, onboarding, tabs, CONTROL Dock e workout ainda não existem. Essas partes pertencem às próximas sessões descritas no plano de implementação.
 
-## Documentation
+## Requisitos
 
-- [Product vision](docs/PRODUCT_VISION.md)
-- [Implementation plan](docs/IMPLEMENTATION_PLAN.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [Design system](docs/DESIGN_SYSTEM.md)
-- [Asset brief and image prompts](docs/ASSET_BRIEF.md)
-- [Quality and release gates](docs/QUALITY.md)
+- Node.js 22.13 ou superior;
+- npm;
+- Expo Go no Android ou iPhone usado para teste;
+- Android Studio somente para emulador Android;
+- macOS e Xcode somente para iOS Simulator.
 
-Repository rules for coding agents live in [AGENTS.md](AGENTS.md).
+No Windows, a validação de iOS deve ser feita em iPhone físico com Expo Go.
 
-## Requirements
-
-- Node.js 22.13 or newer. The current workspace has Node.js 24 available.
-- npm.
-- Expo Go on the Android or iPhone used for testing.
-- Android Studio only if an Android emulator is desired.
-- macOS and Xcode only if an iOS Simulator is desired.
-
-Expo's iOS Simulator runs only on macOS. From Windows, use a physical iPhone with Expo Go.
-
-## Install
+## Instalação
 
 ```bash
 npm install
 ```
 
-## Start
+## Execução
 
 ```bash
-npx expo start
+npm run start
 ```
 
-The terminal displays a QR code.
-
-### Android device
-
-1. Install Expo Go from Google Play.
-2. Keep the phone and computer on the same network.
-3. Scan the QR code from Expo Go.
-
-### Android emulator
-
-1. Start an emulator from Android Studio.
-2. Start the Expo development server.
-3. Press `a` in the Expo terminal.
-
-### Physical iPhone from Windows
-
-1. Install Expo Go from the App Store.
-2. Keep the iPhone and computer on the same network.
-3. Scan the QR code with the iPhone camera and open it in Expo Go.
-
-If the device cannot reach the development server over the local network, try:
+O terminal exibe um QR code. Para Android, abra pelo Expo Go; no iPhone, leia o código com a câmera e abra no Expo Go. Se o aparelho não alcançar o servidor pela rede local, tente:
 
 ```bash
 npx expo start --tunnel
 ```
 
-For a stale Metro cache:
+Para limpar um cache antigo do Metro:
 
 ```bash
 npx expo start --clear
 ```
 
-## Current scripts
+## Qualidade
 
 ```bash
-npm run start
-npm run android
-npm run ios
-npm run web
+npm run format:check
 npm run lint
+npm run typecheck
+npm run test:ci
 ```
 
-The v0.1 implementation will add `typecheck`, `test`, and `test:ci` scripts before the first version is closed.
+Os mesmos checks rodam no GitHub Actions. `npm run test` inicia o Jest em modo watch e `npm run format` aplica o Prettier.
 
-## Planned local demo behavior
+## Fluxo Git
 
-v0.1 will provide a local demo profile, registration, onboarding, logout, theme preference, and a minimal workout session. AsyncStorage will persist display data and session state only; passwords will never be stored.
+Não faça commits diretamente em `main`. Toda tarefa deve nascer da `main` atualizada em uma branch `feature/`, `bugfix/` ou `docs/`, e os commits seguem Conventional Commits. O processo completo e exemplos estão em [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Later versions will add Today, Live Workout, Smart Adaptation, Progress, and Control Twin as local features. Smart Adaptation will use transparent deterministic rules and will not claim to be a real AI system.
+## Documentação
 
-## Official Expo references
+- [Visão de produto](docs/PRODUCT_VISION.md)
+- [Plano de implementação](docs/IMPLEMENTATION_PLAN.md)
+- [Arquitetura](docs/ARCHITECTURE.md)
+- [Design system](docs/DESIGN_SYSTEM.md)
+- [Asset brief e prompts](docs/ASSET_BRIEF.md)
+- [Qualidade e fechamento](docs/QUALITY.md)
+- [Regras para agentes](AGENTS.md)
+
+## Referências oficiais do Expo
 
 - [Expo SDK 57](https://docs.expo.dev/versions/v57.0.0/)
-- [Start developing](https://docs.expo.dev/get-started/start-developing/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS Simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Router tabs](https://docs.expo.dev/router/advanced/tabs/)
+- [Desenvolvimento com Expo](https://docs.expo.dev/get-started/start-developing/)
+- [Unit testing com Jest](https://docs.expo.dev/develop/unit-testing/)
+- [ESLint e Prettier](https://docs.expo.dev/guides/using-eslint/)

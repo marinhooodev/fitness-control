@@ -1,20 +1,19 @@
 {
   "expo": {
-    "name": "fitness-control",
-    "slug": "fitness-control",
-    "version": "1.0.0",
+    "name": "CONTROL",
+    "slug": "control-fitness",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "fitnesscontrol",
+    "scheme": "control",
     "userInterfaceStyle": "automatic",
-    "ios": {
-      "icon": "./assets/expo.icon"
-    },
+    "backgroundColor": "#080A09",
+    "primaryColor": "#C8FF3D",
+    "ios": {},
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#080A09",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false
@@ -28,9 +27,14 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#080A09",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "imageWidth": 128,
+          "resizeMode": "contain",
+          "dark": {
+            "backgroundColor": "#080A09",
+            "image": "./assets/images/splash-icon.png"
+          }
         }
       ]
     ],
