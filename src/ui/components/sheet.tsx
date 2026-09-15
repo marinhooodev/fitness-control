@@ -119,7 +119,7 @@ export function Sheet({
     >
       <View style={styles.modalRoot}>
         <Animated.View
-          accessibilityElementsHidden
+          aria-hidden
           importantForAccessibility="no-hide-descendants"
           pointerEvents="none"
           style={[
@@ -129,7 +129,7 @@ export function Sheet({
           ]}
         />
         <Pressable
-          accessibilityElementsHidden
+          aria-hidden
           disabled={!closeOnBackdropPress}
           importantForAccessibility="no-hide-descendants"
           onPress={onClose}
@@ -155,7 +155,7 @@ export function Sheet({
               ]}
             >
               <View
-                accessibilityElementsHidden
+                aria-hidden
                 importantForAccessibility="no-hide-descendants"
                 style={[styles.handle, { backgroundColor: theme.colors.borderStrong }]}
               />

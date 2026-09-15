@@ -9,7 +9,7 @@ export function Divider({ style, ...props }: ViewProps) {
   return (
     <View
       {...props}
-      accessibilityElementsHidden
+      aria-hidden
       importantForAccessibility="no"
       style={[styles.divider, { backgroundColor: theme.colors.border }, style]}
     />

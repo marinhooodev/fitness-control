@@ -1,12 +1,5 @@
 import { DarkTheme, DefaultTheme, ThemeProvider as NavigationThemeProvider } from 'expo-router';
-import {
-  createContext,
-  type ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useSyncExternalStore,
-} from 'react';
+import { createContext, type ReactNode, useContext, useMemo, useSyncExternalStore } from 'react';
 import { Platform, useColorScheme } from 'react-native';
 
 import { type ThemeMode, useDemoStore } from '@/store/demo-store';
@@ -41,12 +34,6 @@ export function ControlThemeProvider({ children }: ControlThemeProviderProps) {
   const resolvedMode: ResolvedThemeMode =
     mode === 'system' ? (stableSystemMode === 'dark' ? 'dark' : 'light') : mode;
   const theme = themes[resolvedMode];
-
-  useEffect(() => {
-    if (Platform.OS === 'web') {
-      void useDemoStore.persist.rehydrate();
-    }
-  }, []);
 
   const navigationTheme = useMemo(() => {
     const baseTheme = resolvedMode === 'dark' ? DarkTheme : DefaultTheme;

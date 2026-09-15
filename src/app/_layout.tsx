@@ -3,7 +3,6 @@ import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import { Platform } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -16,6 +15,8 @@ SplashScreen.setOptions({ duration: 240, fade: true });
 
 function AppFrame() {
   const { resolvedMode, theme } = useTheme();
+  const session = useDemoStore((state) => state.session);
+  const needsOnboarding = Boolean(session && !session.onboardingComplete);
 
   return (
     <>
@@ -25,7 +26,14 @@ function AppFrame() {
           contentStyle: { backgroundColor: theme.colors.canvas },
           headerShown: false,
         }}
-      />
+      >
+        <Stack.Protected guard={!session || needsOnboarding}>
+          <Stack.Screen name="(auth)" />
+        </Stack.Protected>
+        <Stack.Protected guard={Boolean(session?.onboardingComplete)}>
+          <Stack.Screen name="(app)" />
+        </Stack.Protected>
+      </Stack>
     </>
   );
 }
@@ -33,16 +41,19 @@ function AppFrame() {
 export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts(controlFonts);
   const isHydrated = useDemoStore((state) => state.isHydrated);
-  const themeReady = Platform.OS === 'web' || isHydrated;
   const fontsReady = fontsLoaded || Boolean(fontError);
 
   useEffect(() => {
-    if (fontsReady && themeReady) {
+    void useDemoStore.persist.rehydrate();
+  }, []);
+
+  useEffect(() => {
+    if (fontsReady && isHydrated) {
       void SplashScreen.hideAsync();
     }
-  }, [fontsReady, themeReady]);
+  }, [fontsReady, isHydrated]);
 
-  if (!fontsReady || !themeReady) {
+  if (!fontsReady || !isHydrated) {
     return null;
   }
 

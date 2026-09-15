@@ -12,9 +12,9 @@ O projeto é permanentemente **mock-only e offline-first**:
 
 ## Estado atual
 
-A Sessão 2 da v0.1.0 entrega o design system compartilhado: tokens semânticos, fontes locais Manrope e Barlow Condensed, tema system/light/dark persistido, primitives acessíveis, motion com reduce motion, Sheet gestual e identidade vetorial provisória. A rota inicial funciona temporariamente como vitrine interativa desses fundamentos.
+A Sessão 3 da v0.1.0 entrega auth e onboarding inteiramente locais sobre o design system compartilhado. É possível entrar com Alex Morgan, criar um perfil, validar os campos sem armazenar senha, escolher objetivo, frequência e equipamento, reabrir uma sessão persistida, fazer logout preservando dados e confirmar um reset completo.
 
-Auth, onboarding, tabs, CONTROL Dock e workout ainda não existem. Essas partes pertencem às próximas sessões descritas no plano de implementação; nenhuma integração remota foi adicionada.
+Tabs, CONTROL Dock e workout ainda não existem; pertencem à Sessão 4. Android e iPhone físico ainda precisam do smoke manual registrado no plano, e nenhuma integração remota foi adicionada.
 
 ## Requisitos
 

@@ -20,7 +20,7 @@ export function ControlIcon({ name, color, size = 20, strokeWidth = 2 }: Control
   };
 
   return (
-    <Svg accessibilityElementsHidden height={size} viewBox="0 0 24 24" width={size}>
+    <Svg height={size} viewBox="0 0 24 24" width={size}>
       {name === 'alert' ? (
         <>
           <Path

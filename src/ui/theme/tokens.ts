@@ -1,4 +1,4 @@
-import type { TextStyle, ViewStyle } from 'react-native';
+import { Platform, type TextStyle, type ViewStyle } from 'react-native';
 
 export const lightColors = {
   canvas: '#F2F5F0',
@@ -160,35 +160,47 @@ export const typography = {
 
 export const elevation = {
   light: {
-    card: {
-      shadowColor: lightColors.shadow,
-      shadowOffset: { width: 0, height: 6 },
-      shadowOpacity: 0.08,
-      shadowRadius: 16,
-      elevation: 3,
-    },
-    floating: {
-      shadowColor: lightColors.shadow,
-      shadowOffset: { width: 0, height: 14 },
-      shadowOpacity: 0.16,
-      shadowRadius: 28,
-      elevation: 10,
-    },
+    card: Platform.select<ViewStyle>({
+      web: { boxShadow: '0 6px 16px rgba(21, 32, 23, 0.08)' },
+      ios: {
+        shadowColor: lightColors.shadow,
+        shadowOffset: { width: 0, height: 6 },
+        shadowOpacity: 0.08,
+        shadowRadius: 16,
+      },
+      default: { elevation: 3 },
+    }),
+    floating: Platform.select<ViewStyle>({
+      web: { boxShadow: '0 14px 28px rgba(21, 32, 23, 0.16)' },
+      ios: {
+        shadowColor: lightColors.shadow,
+        shadowOffset: { width: 0, height: 14 },
+        shadowOpacity: 0.16,
+        shadowRadius: 28,
+      },
+      default: { elevation: 10 },
+    }),
   },
   dark: {
-    card: {
-      shadowColor: darkColors.shadow,
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.14,
-      shadowRadius: 12,
-      elevation: 2,
-    },
-    floating: {
-      shadowColor: darkColors.shadow,
-      shadowOffset: { width: 0, height: 16 },
-      shadowOpacity: 0.36,
-      shadowRadius: 30,
-      elevation: 12,
-    },
+    card: Platform.select<ViewStyle>({
+      web: { boxShadow: '0 4px 12px rgba(0, 0, 0, 0.14)' },
+      ios: {
+        shadowColor: darkColors.shadow,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.14,
+        shadowRadius: 12,
+      },
+      default: { elevation: 2 },
+    }),
+    floating: Platform.select<ViewStyle>({
+      web: { boxShadow: '0 16px 30px rgba(0, 0, 0, 0.36)' },
+      ios: {
+        shadowColor: darkColors.shadow,
+        shadowOffset: { width: 0, height: 16 },
+        shadowOpacity: 0.36,
+        shadowRadius: 30,
+      },
+      default: { elevation: 12 },
+    }),
   },
 } satisfies Record<'light' | 'dark', Record<'card' | 'floating', ViewStyle>>;

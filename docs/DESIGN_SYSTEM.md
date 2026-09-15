@@ -3,7 +3,7 @@
 > Contrato visual inicial da v0.1.0  
 > Valores devem ser verificados em telas reais antes de serem considerados finais.
 
-Implementação atual: tokens, fontes, primitives, tema persistido, identidade vetorial e Sheet foram materializados na Sessão 2. A vitrine interna temporária na rota raiz permite validar estados e temas até os fluxos reais a substituírem.
+Implementação atual: tokens, fontes, primitives, tema persistido, identidade vetorial e Sheet foram materializados na Sessão 2. Na Sessão 3, os fluxos reais de auth e onboarding substituíram a vitrine interna; os testes das primitives foram preservados junto aos componentes.
 
 ## Direção
 

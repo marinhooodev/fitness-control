@@ -1,7 +1,7 @@
 # CONTROL — plano de implementação
 
 > Alvo ativo: v0.1.0 — Functional Shell  
-> Status: em implementação — Sessão 2 concluída no código; smoke em dispositivos pendente
+> Status: em implementação — Sessão 3 concluída no código; smoke em dispositivos pendente
 > Este documento organiza trabalho futuro; nenhuma etapa descrita aqui deve ser considerada concluída sem evidência.
 
 ## Estratégia
@@ -18,19 +18,24 @@ Não será criado um design completo de todas as features antes do código. Cada
 
 ## Estado atual
 
-- A Sessão 2 substituiu a baseline por uma vitrine interna temporária do design system.
+- A Sessão 3 substituiu a vitrine interna pelos fluxos locais de sign-in, sign-up e onboarding.
 - `package.json` e `app.json` estão em `0.1.0`; nome, slug e scheme usam a identidade CONTROL.
 - Tokens semânticos, tipografia, motion, elevação e primitives compartilhadas vivem em `src/ui`.
 - Manrope e Barlow Condensed são carregadas de arquivos empacotados; não existe carregamento remoto.
 - O tema system/light/dark é resolvido pelo `ControlThemeProvider` e persistido localmente no store Zustand.
+- Perfil, preferências e sessão demonstrativa compartilham o mesmo store persistido; senha e confirmação nunca chegam ao store.
+- A raiz aguarda fontes e reidratação do AsyncStorage antes de montar as rotas protegidas do Expo Router.
+- O perfil demo Alex Morgan entra diretamente; cadastro local passa por três etapas de onboarding.
+- E-mail local conhecido aceita qualquer senha sintaticamente válida; e-mail desconhecido abre o cadastro já preenchido.
+- Logout preserva perfil, preferências e tema; reset confirmado restaura o first launch e o tema `system`.
 - O Sheet local usa Modal, Gesture Handler e Reanimated, incluindo gesto de dismiss e reduce motion.
 - Símbolo, wordmark e splash provisórios têm fontes vetoriais locais e componentes SVG.
 - TypeScript permanece em strict mode e não existem CSS modules.
 - ESLint flat, Prettier, Jest Expo e React Native Testing Library estão configurados.
-- Os gates `lint`, `typecheck` e `test:ci`, o Expo Doctor e o export Android/iOS/web passam localmente.
-- O smoke visual web cobre os temas light/dark, persistência após reload e o Sheet; Android e iPhone físico continuam pendentes.
-- A vitrine cobre estados de botões, campos, chips, cards, mensagens, avatares e o Sheet nos dois temas.
-- Auth, tabs e demais features permanecem fora da árvore, conforme o limite da Sessão 2.
+- Os gates `lint`, `typecheck` e `test:ci`, o Expo Doctor e os exports Android/iOS passam localmente.
+- Quatorze testes cobrem primitives, validação, onboarding, reidratação, os dois caminhos de entrada, e-mail desconhecido, ausência de senha e diferença entre logout/reset.
+- Android e iPhone físico continuam pendentes para fonte ampliada, teclado, reduce motion e relaunch real.
+- Tabs, CONTROL Dock e workout permanecem fora da árvore, conforme o limite da Sessão 3.
 
 ## Resultado da v0.1.0
 
@@ -125,10 +130,10 @@ Entregar um fluxo de entrada completo, persistido e honesto sobre sua natureza d
 
 ### Fechamento da sessão
 
-- Os dois caminhos, demo e cadastro, chegam a uma tela autenticada temporária.
-- Encerrar e reabrir o app preserva sessão e onboarding.
-- Senha não aparece no estado persistido.
-- Logout e reset têm resultados diferentes e testados.
+- [x] Os dois caminhos, demo e cadastro, chegam a uma tela autenticada temporária pelo estado e pelos guards implementados.
+- [ ] Encerrar e reabrir o app preserva sessão e onboarding em Android e iPhone físicos; a serialização persistida está coberta por teste.
+- [x] Senha não aparece no estado persistido.
+- [x] Logout e reset têm resultados diferentes e testados.
 
 ## Sessão 4 — app shell e CONTROL Dock
 

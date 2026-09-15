@@ -12,8 +12,8 @@ export function ControlSplash({ style, ...props }: ViewProps) {
       accessibilityRole="image"
       style={[styles.root, style]}
     >
-      <ControlMark accessible={false} size={72} />
-      <ControlWordmark accessible={false} width={168} />
+      <ControlMark decorative size={72} />
+      <ControlWordmark decorative width={168} />
     </View>
   );
 }
