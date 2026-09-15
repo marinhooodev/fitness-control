@@ -20,3 +20,29 @@ export interface DemoSession {
   signedInAt: string;
   onboardingComplete: boolean;
 }
+
+export type WorkoutStatus = 'idle' | 'active' | 'paused' | 'completed';
+
+export interface WorkoutExercise {
+  id: string;
+  name: string;
+  prescription: string;
+  detail: string;
+}
+
+export interface WorkoutSummary {
+  id: string;
+  title: string;
+  focus: string;
+  durationMinutes: number;
+  exerciseCount: number;
+  exercises: WorkoutExercise[];
+}
+
+export interface ActiveWorkoutState {
+  workoutId: string;
+  status: Extract<WorkoutStatus, 'active' | 'paused'>;
+  startedAt: string;
+  pausedAt: string | null;
+  accumulatedPauseMs: number;
+}

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { AppHeader } from '@/features/shell/app-header';
 import { useDemoStore, type ThemeMode } from '@/store/demo-store';
-import { ControlWordmark } from '@/ui/brand/control-wordmark';
 import { Avatar, Button, Card, Chip, FormMessage, Screen, Sheet, Text } from '@/ui/components';
 import { spacing } from '@/ui/theme/tokens';
 import { useTheme } from '@/ui/theme/theme-provider';
@@ -21,7 +21,7 @@ const equipmentLabels = {
   minimal: 'Minimal equipment',
 } as const;
 
-export function AuthenticatedHomeScreen() {
+export function YouScreen() {
   const profile = useDemoStore((state) => state.profile);
   const preferences = useDemoStore((state) => state.preferences);
   const signOut = useDemoStore((state) => state.signOut);
@@ -35,21 +35,19 @@ export function AuthenticatedHomeScreen() {
 
   return (
     <>
-      <Screen contentContainerStyle={styles.content} scroll>
-        <View style={styles.header}>
-          <ControlWordmark width={142} />
-          <Chip label="SESSION 3" selected />
-        </View>
+      <Screen
+        contentContainerStyle={styles.content}
+        safeAreaEdges={['top', 'left', 'right']}
+        scroll
+      >
+        <AppHeader title="You" />
 
-        <View style={styles.hero}>
+        <View style={styles.intro}>
           <Text tone="brand" variant="caption">
-            LOCAL PROFILE READY
+            LOCAL PROFILE
           </Text>
-          <Text accessibilityRole="header" variant="display">
-            READY WHEN YOU ARE.
-          </Text>
-          <Text tone="secondary">
-            Auth and onboarding are complete. The CONTROL Dock arrives in Session 4.
+          <Text accessibilityRole="header" variant="title">
+            Your setup, your control.
           </Text>
         </View>
 
@@ -69,10 +67,13 @@ export function AuthenticatedHomeScreen() {
         </Card>
 
         <Card>
-          <Text variant="heading">Appearance</Text>
-          <Text tone="secondary">
-            Theme preference persists locally. Current appearance: {resolvedMode}.
-          </Text>
+          <View style={styles.cardHeading}>
+            <Text variant="heading">Appearance</Text>
+            <Text tone="secondary" variant="caption">
+              {resolvedMode.toUpperCase()} NOW
+            </Text>
+          </View>
+          <Text tone="secondary">Theme choice is stored only on this device.</Text>
           <View
             accessibilityLabel="Theme mode"
             accessibilityRole="radiogroup"
@@ -91,7 +92,7 @@ export function AuthenticatedHomeScreen() {
         </Card>
 
         <FormMessage
-          message="Everything on this screen is mock data stored only on this device."
+          message="Everything in CONTROL is mock data stored locally. No real account is created."
           tone="info"
         />
 
@@ -113,7 +114,7 @@ export function AuthenticatedHomeScreen() {
         visible={isResetVisible}
       >
         <FormMessage
-          message="This removes the local profile, session, onboarding choices and theme preference."
+          message="This removes the local profile, session, onboarding choices, active workout and theme preference."
           tone="warning"
         />
         <Button
@@ -131,16 +132,10 @@ export function AuthenticatedHomeScreen() {
 const styles = StyleSheet.create({
   content: {
     gap: spacing.x6,
+    paddingBottom: spacing.x8,
   },
-  header: {
-    minHeight: 52,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: spacing.x4,
-  },
-  hero: {
-    gap: spacing.x3,
+  intro: {
+    gap: spacing.x2,
   },
   profileRow: {
     flexDirection: 'row',
@@ -155,6 +150,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: spacing.x2,
+  },
+  cardHeading: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: spacing.x3,
   },
   actions: {
     gap: spacing.x3,

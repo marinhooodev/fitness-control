@@ -1,5 +1,5 @@
-import { AuthenticatedHomeScreen } from '@/features/profile/authenticated-home-screen';
+import { Redirect } from 'expo-router';
 
-export default function AuthenticatedHomeRoute() {
-  return <AuthenticatedHomeScreen />;
+export default function AuthenticatedIndexRoute() {
+  return <Redirect href="/(app)/(tabs)/today" />;
 }

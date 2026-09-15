@@ -3,7 +3,7 @@ import { ActivityIndicator, Pressable, type PressableProps, StyleSheet, View } f
 import Animated from 'react-native-reanimated';
 
 import { Text } from '@/ui/components/text';
-import { triggerHaptic } from '@/ui/motion/haptics';
+import { triggerHaptic, type HapticIntent } from '@/ui/motion/haptics';
 import { usePressScale } from '@/ui/motion/use-press-scale';
 import { borders, layout, radii, spacing } from '@/ui/theme/tokens';
 import { useTheme } from '@/ui/theme/theme-provider';
@@ -18,6 +18,7 @@ export interface ButtonProps extends Omit<PressableProps, 'children' | 'style'> 
   loading?: boolean;
   fullWidth?: boolean;
   leading?: ReactNode;
+  hapticIntent?: HapticIntent | false;
 }
 
 export function Button({
@@ -27,6 +28,7 @@ export function Button({
   loading = false,
   fullWidth = false,
   leading,
+  hapticIntent,
   disabled,
   onPress,
   onPressIn,
@@ -46,15 +48,20 @@ export function Button({
         : theme.colors.textPrimary;
 
   const handlePress: PressableProps['onPress'] = (event) => {
-    triggerHaptic(
-      variant === 'danger'
-        ? 'warning'
-        : variant === 'primary'
-          ? 'medium'
-          : variant === 'ghost'
-            ? 'selection'
-            : 'light',
-    );
+    const resolvedHaptic =
+      hapticIntent === undefined
+        ? variant === 'danger'
+          ? 'warning'
+          : variant === 'primary'
+            ? 'medium'
+            : variant === 'ghost'
+              ? 'selection'
+              : 'light'
+        : hapticIntent;
+
+    if (resolvedHaptic) {
+      triggerHaptic(resolvedHaptic);
+    }
     onPress?.(event);
   };
 

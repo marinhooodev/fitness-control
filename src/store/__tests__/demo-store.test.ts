@@ -10,6 +10,7 @@ function resetStoreMemory() {
     profile: null,
     preferences: null,
     session: null,
+    activeWorkout: null,
   });
 }
 
@@ -120,6 +121,51 @@ describe('demo store', () => {
       profile: null,
       preferences: null,
       session: null,
+      activeWorkout: null,
     });
+  });
+
+  it('persists start, pause, resume and finish transitions using timestamps', async () => {
+    jest.useFakeTimers();
+    jest.setSystemTime(new Date('2026-09-15T12:00:00.000Z'));
+
+    useDemoStore.getState().signInDemo();
+    useDemoStore.getState().startWorkout('upper-strength-a');
+
+    expect(useDemoStore.getState().activeWorkout).toEqual({
+      workoutId: 'upper-strength-a',
+      status: 'active',
+      startedAt: '2026-09-15T12:00:00.000Z',
+      pausedAt: null,
+      accumulatedPauseMs: 0,
+    });
+
+    jest.setSystemTime(new Date('2026-09-15T12:05:00.000Z'));
+    useDemoStore.getState().pauseWorkout();
+    expect(useDemoStore.getState().activeWorkout?.pausedAt).toBe('2026-09-15T12:05:00.000Z');
+
+    jest.setSystemTime(new Date('2026-09-15T12:07:00.000Z'));
+    useDemoStore.getState().resumeWorkout();
+    expect(useDemoStore.getState().activeWorkout).toMatchObject({
+      status: 'active',
+      pausedAt: null,
+      accumulatedPauseMs: 120_000,
+    });
+
+    await waitFor(async () => {
+      const persisted = await AsyncStorage.getItem(demoStorageKey);
+      expect(persisted).toContain('upper-strength-a');
+      expect(persisted).toContain('accumulatedPauseMs');
+    });
+
+    useDemoStore.getState().finishWorkout();
+    expect(useDemoStore.getState().activeWorkout).toBeNull();
+
+    await waitFor(async () => {
+      const persisted = await AsyncStorage.getItem(demoStorageKey);
+      expect(JSON.parse(persisted!).state.activeWorkout).toBeNull();
+    });
+
+    jest.useRealTimers();
   });
 });
